@@ -60,7 +60,7 @@ router.get('/check-payment-status', async (req, res) => {
 //   }
 // });
 
-router.post('/webhook', async (req, res) => {
+router.post('/webhook', express.raw({type: 'application/json'}), async (req, res) => {
   const payload = req.body
 
   try {
