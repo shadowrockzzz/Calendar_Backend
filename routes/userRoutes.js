@@ -42,7 +42,7 @@ router.get('/check-payment-status', async (req, res) => {
 })
 
 router.post('/webhook', async (req, res) => {
-  const payload = req.rawBody; // Use rawBody for the entire payload
+  const payload = req.body;
 
   try {
     const event = stripe.webhooks.constructEvent(payload, req.headers['stripe-signature'], 'whsec_m400H3DdwfXEHpUiBE5eaUrnknNgaiXk');
