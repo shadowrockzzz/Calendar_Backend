@@ -69,7 +69,6 @@ router.post('/webhook', express.raw({type: 'application/json'}), async (req, res
     const event = stripe.webhooks.constructEvent(payload, signature, 'whsec_m400H3DdwfXEHpUiBE5eaUrnknNgaiXk');
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object;
-      // Do something with the completed Checkout session
       console.log('Checkout Session Completed:', session);
     }
 
