@@ -45,6 +45,7 @@ router.post('/webhook', async (req, res) => {
   const payload = Buffer.from(JSON.stringify(req.body))
 
   try {
+    console.log(payload)
     const event = stripe.webhooks.constructEvent(payload, req.headers['stripe-signature'], 'whsec_m400H3DdwfXEHpUiBE5eaUrnknNgaiXk');
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object;
