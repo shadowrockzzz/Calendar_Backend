@@ -41,6 +41,24 @@ router.get('/check-payment-status', async (req, res) => {
   }
 })
 
+router.post('/webhook', async (req, res) => {
+  const payload = req.rawBody; // Use rawBody for the entire payload
+
+  try {
+    const event = stripe.webhooks.constructEvent(payload, req.headers['stripe-signature'], 'whsec_m400H3DdwfXEHpUiBE5eaUrnknNgaiXk');
+    if (event.type === 'checkout.session.completed') {
+      const session = event.data.object;
+      // Do something with the completed Checkout session
+      console.log('Checkout Session Completed:', session);
+    }
+
+    res.status(200).end();
+  } catch (error) {
+    console.error('Error handling Stripe webhook event:', error.message);
+    res.status(400).send(`Webhook Error: ${error.message}`);
+  }
+});
+
 router.post('/create-checkout-session', async (req, res) => {
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
