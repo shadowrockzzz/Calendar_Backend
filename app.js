@@ -8,11 +8,10 @@ const routes = require('./routes/userRoutes');
 
 const app = express()
 
-const PORT = process.env.PORT || 3030
+const PORT = 3030
 
 app.use(cors())
 app.use(bodyParser.json())
-// app.use('/api/reservation', reservationRoutes);
 app.use('/api', routes);
 
 const db = mongoose.connection;
