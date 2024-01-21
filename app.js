@@ -27,12 +27,6 @@ mongoose.connect("mongodb+srv://vssnreddy1:VSSNReddy123@cluster0.z5eib2e.mongodb
     useUnifiedTopology: true,
 })
 
-// app.get('/api/reservation',(req,res)=>{
-//   console.log(req)
-// })
-
-// app.post('/api/reservation',(req,res)=>{
-//   console.log(req)
-// })
+app.get('/',(req,res)=>{res.json('My app is running...')})
 
 app.listen(PORT, console.log('App is listening on '+ PORT))
